@@ -1,0 +1,173 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Activity, BrainCircuit, MessageSquare, ChevronRight, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const LandingPage = () => {
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 },
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
+      <nav className="flex items-center justify-between px-8 py-6 bg-white border-b sticky top-0 z-50">
+        <div className="flex items-center gap-2">
+          <div className="bg-blue-600 p-2 rounded-lg">
+            <Zap className="text-white w-6 h-6" />
+          </div>
+          <span className="text-2xl font-bold tracking-tight text-blue-900">InsightFlow</span>
+        </div>
+        <div className="hidden md:flex gap-8 font-medium text-slate-600">
+          <a href="#features" className="hover:text-blue-600 transition">Features</a>
+          <a href="#architecture" className="hover:text-blue-600 transition">Architecture</a>
+          <a href="#tech" className="hover:text-blue-600 transition">Tech Stack</a>
+        </div>
+        <Link to="/signup" className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+          Get Started
+        </Link>
+      </nav>
+
+      <header className="max-w-7xl mx-auto px-8 py-20 text-center">
+        <motion.div {...fadeIn}>
+          <span className="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase">
+            AI-Powered Analytics SaaS
+          </span>
+          <h1 className="mt-8 text-5xl md:text-7xl font-extrabold text-slate-900 leading-tight">
+            Understand The <span className="text-blue-600">Why</span>
+            <br />
+            Behind Every Click
+          </h1>
+          <p className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto">
+            InsightFlow turns raw interaction data into actionable intelligence with real-time tracking,
+            AI insights, funnels, retention analytics, and team-ready dashboards.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/signup" className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-800 transition">
+              Launch InsightFlow <ChevronRight size={20} />
+            </Link>
+            <Link to="/demo" className="px-8 py-4 rounded-xl font-bold text-lg border-2 border-slate-200 hover:bg-slate-100 transition">
+              View Demo
+            </Link>
+          </div>
+        </motion.div>
+      </header>
+
+      <section id="features" className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid md:grid-cols-3 gap-12">
+            <FeatureCard
+              icon={<Activity className="text-blue-600" />}
+              title="Real-Time Tracking"
+              desc="Monitor DAU, MAU, page visits, custom events, and engagement behavior as it happens."
+            />
+            <FeatureCard
+              icon={<BrainCircuit className="text-purple-600" />}
+              title="AI Insight Engine"
+              desc="Detect anomalies, surface weak journeys, and generate recommendations to improve conversion."
+            />
+            <FeatureCard
+              icon={<MessageSquare className="text-emerald-600" />}
+              title="Natural Language Analytics"
+              desc="Ask questions such as 'Why did conversion drop this week?' and get an instant answer."
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="architecture" className="py-24 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-8">
+          <h2 className="text-3xl font-bold text-center mb-16">Enterprise-Ready Architecture</h2>
+          <div className="relative border-l-2 border-blue-200 ml-4 space-y-12">
+            <Step number="1" title="Organization Registration" desc="Create secure workspaces with role-based access control." />
+            <Step number="2" title="API Key Generation" desc="Issue unique project keys to isolate and identify tracking data." />
+            <Step number="3" title="Tracking Integration" desc="Install a lightweight script for events, forms, clicks, and user journeys." />
+            <Step number="4" title="AI Processing and Reporting" desc="Process events through the analytics engine for dashboards, alerts, and recommendations." />
+          </div>
+        </div>
+      </section>
+
+      <section id="tech" className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Built with Modern Tech</h2>
+          <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+            <table className="w-full text-left">
+              <thead className="bg-slate-50 border-b border-slate-200">
+                <tr>
+                  <th className="px-6 py-4 font-bold text-slate-700">Layer</th>
+                  <th className="px-6 py-4 font-bold text-slate-700">Technology</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <TableRow layer="Frontend" tech="React, Tailwind CSS, Framer Motion" />
+                <TableRow layer="Backend" tech="Node.js, Express.js" />
+                <TableRow layer="Database" tech="MongoDB" />
+                <TableRow layer="AI Integration" tech="OpenAI and Gemini APIs" />
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-slate-900 text-slate-300 py-20">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid md:grid-cols-2 gap-12 mb-16">
+            <div>
+              <h3 className="text-white text-2xl font-bold mb-4">InsightFlow</h3>
+              <p className="max-w-sm">
+                An AI-powered analytics platform for websites and applications, developed as an
+                industry-level SaaS product at GLA University, Mathura.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-white font-bold mb-4">Project Lead</h4>
+                <p>Arpan Jain</p>
+              </div>
+              <div>
+                <h4 className="text-white font-bold mb-4">Core Team</h4>
+                <ul className="space-y-1 text-sm">
+                  <li>Pavan Patel</li>
+                  <li>Shyam Ji Patel</li>
+                  <li>Aaradhya Rathore</li>
+                  <li>Radhika Gupta</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-slate-800 pt-8 text-center text-sm">
+            Copyright 2026 InsightFlow Analytics. Under the supervision of Dr. Monica Dutta.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+const FeatureCard = ({ icon, title, desc }) => (
+  <div className="p-8 rounded-3xl border border-slate-100 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-50 transition group">
+    <div className="mb-6 p-3 bg-slate-50 rounded-2xl w-fit group-hover:bg-blue-50 transition">{React.cloneElement(icon, { size: 32 })}</div>
+    <h3 className="text-xl font-bold mb-3">{title}</h3>
+    <p className="text-slate-600 leading-relaxed">{desc}</p>
+  </div>
+);
+
+const Step = ({ number, title, desc }) => (
+  <div className="relative pl-10">
+    <div className="absolute -left-4 top-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg shadow-blue-200">
+      {number}
+    </div>
+    <h4 className="text-xl font-bold text-slate-900">{title}</h4>
+    <p className="text-slate-600 mt-1">{desc}</p>
+  </div>
+);
+
+const TableRow = ({ layer, tech }) => (
+  <tr className="hover:bg-slate-50 transition">
+    <td className="px-6 py-4 font-semibold text-blue-700">{layer}</td>
+    <td className="px-6 py-4 text-slate-600">{tech}</td>
+  </tr>
+);
+
+export default LandingPage;
