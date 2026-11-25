@@ -1,5 +1,6 @@
 // src/organizer/pages/OrgAnalytics.jsx — Complete Advanced Analytics with AI
 import { useEffect, useState, useCallback, useRef } from "react";
+import PredictionsPanel from "../components/PredictionsPanel";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart3, Activity, Users, MousePointer, RefreshCw,
@@ -751,6 +752,7 @@ const OrgAnalytics = () => {
     { id:"events",    label:"Events",      icon:Activity     },
     { id:"retention", label:"Retention",   icon:Users        },
     { id:"journeys",  label:"Journeys",    icon:Eye          },
+    { id:"predictions", label:"Predictions", icon:Target },
     { id:"ai",        label:"AI Insights", icon:BrainCircuit },
   ];
 
@@ -1395,6 +1397,13 @@ const OrgAnalytics = () => {
                     </div>
                     )}
                   </div>
+                </motion.div>
+              )}
+
+              {/* ── ML PREDICTIONS TAB ── */}
+              {activeTab==="predictions" && selectedProj && (
+                <motion.div key="predictions" initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-10 }}>
+                  <PredictionsPanel projectId={selectedProj._id} />
                 </motion.div>
               )}
 

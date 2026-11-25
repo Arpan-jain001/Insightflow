@@ -1,5 +1,6 @@
 // backend/src/controllers/ai.controller.js — REPLACE existing
 import { askAI } from "../services/ai.service.js";
+import { buildPredictionContext } from "../services/ml.service.js";
 import {
   buildAiContext,
   buildPageAiContext,
@@ -666,6 +667,7 @@ export const insights = async (req, res, next) => {
       to: toDate,
       projectName: projectName || project?.name,
     });
+    const mlBlock = await buildPredictionContext(projectId);
 
     const prompt = `
 You are InsightFlow AI, an expert analytics strategist for SaaS, EdTech, e-commerce, coaching portals, job portals, and business websites.
@@ -674,6 +676,7 @@ InsightFlow's goal is to convert raw behavior data into actionable intelligence:
 Do not give a bland metric recap. Explain what the numbers imply, what is likely broken, and what the organization should improve first.
 
 ${context}
+${mlBlock}
 
 Respond with valid JSON only:
 {
@@ -716,6 +719,7 @@ Respond with valid JSON only:
 
 Rules:
 - Use the whole website/project context only
+- If ML RETENTION MODEL OUTPUT is present, retention predictions must use only those numbers; never invent other probabilities
 - Provide exactly 5 insights, 5 recommendations, 3 predictions, and 3 page_insights
 - Use concrete numbers from the context
 - Be decisive and product-oriented: mention low traffic, broken funnels, missing tracking, weak retention, or strong engagement when the data supports it
@@ -778,12 +782,14 @@ export const chat = async (req, res, next) => {
       to: toDate,
       projectName: project?.name,
     });
+    const mlBlock = await buildPredictionContext(projectId);
 
     const prompt = `
 You are InsightFlow AI assistant for ${project?.name || "this project"}.
 
 REAL PROJECT ANALYTICS:
 ${context}
+${mlBlock}
 
 USER QUESTION: "${question}"
 

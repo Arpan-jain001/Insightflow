@@ -1,0 +1,213 @@
+{
+  "trained_at": "2026-11-01T08:52:53.377284+00:00",
+  "data_source": "synthetic",
+  "is_synthetic": true,
+  "best_model": "logistic_regression",
+  "selection_rule": "highest 5-fold CV ROC-AUC on the training split",
+  "best_vs_runner_up": {
+    "runner_up": "random_forest",
+    "auc_diff_ci95": [
+      0.010138580897439053,
+      0.06128955399724296
+    ],
+    "statistically_distinguishable": true
+  },
+  "label": "returned on a later calendar day within 7 days of first visit",
+  "features_from": "first session only",
+  "feature_columns": [
+    "n_events",
+    "n_page_views",
+    "n_clicks",
+    "n_scroll_events",
+    "n_intent_events",
+    "n_friction_events",
+    "n_unique_pages",
+    "n_event_types",
+    "duration_sec",
+    "events_per_min",
+    "max_scroll_depth",
+    "hour_sin",
+    "hour_cos",
+    "has_conversion",
+    "is_identified",
+    "is_mobile",
+    "is_weekend",
+    "bounced",
+    "referrer_type"
+  ],
+  "n_visitors_total": 4000,
+  "n_labelled": 3546,
+  "n_train": 2195,
+  "n_test": 887,
+  "positive_rate_train": 0.428246013667426,
+  "positive_rate_test": 0.42390078917700114,
+  "split": "purged temporal (train earlier, test later, gap = label window)",
+  "results": {
+    "baseline_prior": {
+      "test": {
+        "roc_auc": 0.5,
+        "pr_auc": 0.42390078917700114,
+        "brier": 0.244227791087989
+      }
+    },
+    "baseline_rule_pageviews": {
+      "test": {
+        "roc_auc": 0.5601761252446184,
+        "pr_auc": 0.47647640834535826
+      }
+    },
+    "logistic_regression": {
+      "cv_roc_auc_mean": 0.6085742137831651,
+      "cv_roc_auc_std": 0.03285085473069842,
+      "cv_pr_auc_mean": 0.5378052501550362,
+      "test": {
+        "roc_auc": 0.618608693841862,
+        "pr_auc": 0.5466108666294649,
+        "f1": 0.5968253968253968,
+        "precision": 0.4253393665158371,
+        "recall": 1.0,
+        "balanced_accuracy": 0.50293542074364,
+        "brier": 0.23317030357218904,
+        "threshold": 0.20999999999999996,
+        "confusion": {
+          "tn": 3,
+          "fp": 508,
+          "fn": 0,
+          "tp": 376
+        }
+      },
+      "test_roc_auc_ci95": [
+        0.5793748079096838,
+        0.6556682067366844
+      ]
+    },
+    "random_forest": {
+      "cv_roc_auc_mean": 0.5820759515130965,
+      "cv_roc_auc_std": 0.018602939728343638,
+      "cv_pr_auc_mean": 0.5251947148701902,
+      "test": {
+        "roc_auc": 0.5825717200316443,
+        "pr_auc": 0.5014203940211406,
+        "f1": 0.5954077593032462,
+        "precision": 0.42390078917700114,
+        "recall": 1.0,
+        "balanced_accuracy": 0.5,
+        "brier": 0.24175835175038418,
+        "threshold": 0.05,
+        "confusion": {
+          "tn": 0,
+          "fp": 511,
+          "fn": 0,
+          "tp": 376
+        }
+      },
+      "test_roc_auc_ci95": [
+        0.5426525254538034,
+        0.6192165113035715
+      ]
+    },
+    "xgboost": {
+      "cv_roc_auc_mean": 0.566516911079088,
+      "cv_roc_auc_std": 0.016839824279579252,
+      "cv_pr_auc_mean": 0.508570191801085,
+      "test": {
+        "roc_auc": 0.5855279593621185,
+        "pr_auc": 0.49521576135558953,
+        "f1": 0.598705501618123,
+        "precision": 0.43023255813953487,
+        "recall": 0.9840425531914894,
+        "balanced_accuracy": 0.5125692218012241,
+        "brier": 0.24959993362426758,
+        "threshold": 0.14999999999999997,
+        "confusion": {
+          "tn": 21,
+          "fp": 490,
+          "fn": 6,
+          "tp": 370
+        }
+      },
+      "test_roc_auc_ci95": [
+        0.547181836118756,
+        0.6229437450491951
+      ]
+    }
+  },
+  "permutation_importance": [
+    {
+      "feature": "max_scroll_depth",
+      "importance": 0.07425521505600198
+    },
+    {
+      "feature": "n_clicks",
+      "importance": 0.026707644585085545
+    },
+    {
+      "feature": "is_mobile",
+      "importance": 0.013697589207644578
+    },
+    {
+      "feature": "n_scroll_events",
+      "importance": 0.007473872673522908
+    },
+    {
+      "feature": "referrer_type",
+      "importance": 0.007031477703293476
+    },
+    {
+      "feature": "has_conversion",
+      "importance": 0.005937460965149677
+    },
+    {
+      "feature": "n_page_views",
+      "importance": 0.002733480451346948
+    },
+    {
+      "feature": "duration_sec",
+      "importance": 0.002087063330141148
+    },
+    {
+      "feature": "n_unique_pages",
+      "importance": 0.0019090644127076283
+    },
+    {
+      "feature": "n_events",
+      "importance": 0.0017711412749302547
+    },
+    {
+      "feature": "n_event_types",
+      "importance": 0.0016160428030144946
+    },
+    {
+      "feature": "hour_cos",
+      "importance": 0.001518715909564039
+    },
+    {
+      "feature": "events_per_min",
+      "importance": 0.0011835366615313813
+    },
+    {
+      "feature": "is_identified",
+      "importance": 0.0006006162301702922
+    },
+    {
+      "feature": "n_intent_events",
+      "importance": 0.0
+    },
+    {
+      "feature": "n_friction_events",
+      "importance": 0.0
+    },
+    {
+      "feature": "bounced",
+      "importance": -0.00012022733896822624
+    },
+    {
+      "feature": "is_weekend",
+      "importance": -0.0005480492984136665
+    },
+    {
+      "feature": "hour_sin",
+      "importance": -0.0023150268559770427
+    }
+  ]
+}
